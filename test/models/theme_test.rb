@@ -3,7 +3,13 @@ require 'test_helper'
 class ThemeTest < ActiveSupport::TestCase
     
     def setup
-       @theme = Theme.new(name: "Portrait", description: "hi-key Summer outdoors")
+       @photographer = Photographer.create!(togname: "barryregan", email: "barry@example.com")
+       @theme = @photographer.themes.build(name: "Portrait", description: "hi-key Summer outdoors")
+    end
+    
+    test "theme without photographer should be invalid" do
+        @theme.photographer_id = nil
+        assert_not @theme.valid?
     end
     
     test "theme should be valid" do

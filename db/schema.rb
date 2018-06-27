@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_143150) do
+ActiveRecord::Schema.define(version: 2018_06_26_071647) do
 
   create_table "photographers", force: :cascade do |t|
     t.string "togname"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_143150) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "photographer_id"
   end
 
 end
