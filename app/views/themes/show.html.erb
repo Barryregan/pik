@@ -1,0 +1,20 @@
+<%= render 'shared/page_title', title: @theme.name %>
+
+<div class="well col-md-8 col-md-offset-2">
+    <h4 class = "center description"><strong>Steps:</strong></h4>
+    <hr/>
+    <%=simple_format(@theme.description) %>
+    <hr />
+    <div class="pull-right">
+        <p class = "center">
+           <em>Created by:</em>
+        </p>
+        <p class="center">
+            <%= link_to gravatar_for(@theme.photographer), themes_path %>
+        </p>
+        <p class="center">
+            <small><%= @theme.photographer.togname.capitalize %></small>
+            <div class="pull-right"><%= time_ago_in_words(@theme.created_at) %> ago</div>
+        </p>
+    </div>
+</div>

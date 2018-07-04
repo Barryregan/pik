@@ -1,4 +1,4 @@
-$navbar-default-bg: 	#e6faff;
+$navbar-default-bg: #990099;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -44,8 +44,8 @@ $navbar-default-bg: 	#e6faff;
 }
 
 .btn-xlarge {
-    background-color: #e6faff;
-    border-color: #e6faff;
+    background-color: #990099;
+    border-color: #990099 ;
 }
 
 
@@ -99,3 +99,21 @@ footer ul li {
   float: left;
   margin-left: 15px;
 }
+
+.description {
+  margin-top: 0;
+}
+
+.well a{
+  color: #990099;
+}
+
+.photographer_info{
+  margin-top: 2px;
+}
+
+.color_as a{
+  color: #990099;
+}
+
+
