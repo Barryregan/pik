@@ -30,7 +30,17 @@ class ThemesTest < ActionDispatch::IntegrationTest
   
   test "create theme valid" do
     get new_theme_path
+    assert_template 'themes/new'
+    name_of_theme = "conference"
+    description_of_theme = "low light back-lit speaker"
+    assert_difference 'Theme.count', 1 do
+      post themes_path, params: { theme: {name: name_of_theme, description: description_of_theme}}
+    end
+    follow_redirect!
+    assert_match name_of_theme.capitalize, response.body
+    assert_match description_of_theme, response.body
   end
+  
   
   test " disallow invalid theme input" do
     get new_theme_path
