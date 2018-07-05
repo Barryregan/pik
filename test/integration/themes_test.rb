@@ -28,6 +28,7 @@ class ThemesTest < ActionDispatch::IntegrationTest
     assert_match @photographer.togname, response.body
     assert_select 'a[href=?]', edit_theme_path(@theme), text: "Edit this theme"
     assert_select 'a[href=?]', theme_path(@theme), text: "Delete this theme"
+    assert_select 'a[href=?]', themes_path, text: "Return to themes listing"
   end
   
   test "create theme valid" do

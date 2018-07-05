@@ -1,11 +1,12 @@
 class ThemesController < ApplicationController
+    before_action :set_theme, only: [:show, :edit, :update]
     
     def index
         @themes = Theme.all
     end
     
     def show
-        @theme = Theme.find(params[:id])
+        
     end
     
     def new
@@ -25,12 +26,12 @@ class ThemesController < ApplicationController
     
     
     def edit
-        @theme = Theme.find(params[:id])
+        
     end
     
     
     def update
-        @theme = Theme.find(params[:id])
+       
         if @theme.update(theme_params)
            flash[:success] = "Theme was updated successfully"
            redirect_to theme_path(@theme)
@@ -47,6 +48,10 @@ class ThemesController < ApplicationController
     
     
     private
+    
+    def set_theme
+        @theme = Theme.find(params[:id])
+    end
     
     def theme_params
         params.require(:theme).permit(:name, :description)
