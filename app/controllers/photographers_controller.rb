@@ -18,6 +18,20 @@ class PhotographersController < ApplicationController
         @photographer = Photographer.find(params[:id])
     end
     
+    def edit
+        @photographer = Photographer.find(params[:id])
+    end
+    
+    def update
+        @photographer = Photographer.find(params[:id])
+        if @photographer.update(photographer_params)
+            flash[:success] = "Account updated successfully"
+            redirect_to @photographer
+        else
+            render 'edit'
+        end
+    end
+    
     private
     
     def photographer_params
