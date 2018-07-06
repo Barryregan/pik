@@ -3,7 +3,8 @@ require 'test_helper'
 class PhotographerTest < ActiveSupport::TestCase
     
     def setup
-       @photographer = Photographer.new(togname: "IconPhoto", email:"mail@example.com")
+       @photographer = Photographer.new(togname: "IconPhoto", email:"mail@example.com",
+                                        password: "password", password_confirmation: "password")
     end
     
     test "Photographer should be valid" do
@@ -58,6 +59,16 @@ class PhotographerTest < ActiveSupport::TestCase
         @photographer.email = mixed_email
         @photographer.save
         assert_equal mixed_email.downcase, @photographer.reload.email 
+    end
+    
+    test "password present" do
+        @photographer.password = @photographer.password_confirmation = " "
+        assert_not @photographer.valid?
+    end
+    
+    test "password min 5 characters" do
+        @photographer.password = @photographer.password_confirmation = "x"*4
+        assert_not @photographer.valid?
     end
   
 end

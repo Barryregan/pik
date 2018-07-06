@@ -3,7 +3,7 @@ require 'test_helper'
 class ThemesTest < ActionDispatch::IntegrationTest
   
   def setup
-    @photographer = Photographer.create!(togname: "barry", email: "bregan@testing.com")
+    @photographer = Photographer.create!(togname: "barry", email: "bregan@testing.com",password: "password", password_confirmation: "password")
     @theme = Theme.create(name: "nighttime photography", description: "candid, from hip, no flash, 3200ISO", photographer: @photographer)
     @theme2 = @photographer.themes.build(name: "family portrait", description: "outdoors natual light candid")
     @theme2.save

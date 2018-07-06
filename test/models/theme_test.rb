@@ -3,7 +3,8 @@ require 'test_helper'
 class ThemeTest < ActiveSupport::TestCase
     
     def setup
-       @photographer = Photographer.create!(togname: "barryregan", email: "barry@example.com")
+       @photographer = Photographer.create!(togname: "barryregan", email: "barry@example.com",
+                                            password: "password", password_confirmation: "password" )
        @theme = @photographer.themes.build(name: "Portrait", description: "hi-key Summer outdoors")
     end
     
