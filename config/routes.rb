@@ -4,4 +4,7 @@ Rails.application.routes.draw do
  
  resources :themes
  
+ get '/signup', to: 'photographers#new'
+ resources :photographers, except: [:new]
+ 
 end
