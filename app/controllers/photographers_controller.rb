@@ -15,7 +15,7 @@ class PhotographersController < ApplicationController
     end
     
     def show
-        
+        @photographer = Photographer.find(params[:id])
     end
     
     private

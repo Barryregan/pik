@@ -1,0 +1,16 @@
+<% obj.each do |theme| %>
+    <div class="row">
+        <div class ="col-md-2">
+            <section class="photographer_info center">
+                <%= gravatar_for(theme.photographer, size: 135) %>
+            </section>
+        </div>
+    <div class= "col-md-8 well">
+        <h4><%= link_to theme.name, theme_path(theme) %></h4>
+        <p><%= truncate(theme.description, length:150) %></p>
+        <p>
+            <span class= "quiet"><small>Created <%=time_ago_in_words(theme.created_at) %> ago </small></span>
+        </p>
+    </div>
+    </div>
+<% end %>
