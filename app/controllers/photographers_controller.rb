@@ -37,6 +37,13 @@ class PhotographersController < ApplicationController
         end
     end
     
+    def destroy
+        @photographer= Photographer.find(params[:id])
+        @photographer.destroy
+        flash[:danger]="photographer and all associated themes have been deleted"
+        redirect_to photographers_path
+    end
+    
     private
     
     def photographer_params
