@@ -4,7 +4,9 @@
         <%= gravatar_for @photographer, size: 150 %>
     </div>
 </div>
-
-
 <h4 align= "center"><%= @photographer.togname %>'s theme's</h4>
-<%= render 'themes/theme', obj: @photographer.themes %>
+<div align ="center">
+    <%= will_paginate @photographer_themes %>
+</div>
+<%= render 'themes/theme', obj: @photographer_themes %>
+

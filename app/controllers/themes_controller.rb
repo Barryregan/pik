@@ -1,8 +1,9 @@
 class ThemesController < ApplicationController
     before_action :set_theme, only: [:show, :edit, :update]
+     
     
     def index
-        @themes = Theme.all
+        @themes = Theme.paginate(:page => params[:page], :per_page => 5)
     end
     
     def show
@@ -45,6 +46,8 @@ class ThemesController < ApplicationController
         flash[:success] = "Theme deleted"
         redirect_to themes_path
     end
+    
+   
     
     
     private

@@ -1,5 +1,9 @@
 class PhotographersController < ApplicationController
     
+    def index
+        @photographers = Photographer.paginate(:page => params[:page], :per_page => 5)
+    end
+    
     def new
         @photographer = Photographer.new
     end
@@ -16,6 +20,7 @@ class PhotographersController < ApplicationController
     
     def show
         @photographer = Photographer.find(params[:id])
+        @photographer_themes = @photographer.themes.paginate(:page => params[:page], :per_page => 5)
     end
     
     def edit

@@ -1,4 +1,13 @@
 
+
 <%= render 'shared/page_title', title: "showing all themes" %>
 
+<div align="center">
+    <%=will_paginate%>
+</div>
+
 <%= render 'theme', obj: @themes %>
+
+<div align="center">
+    <%=will_paginate%>
+</div>
