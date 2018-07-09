@@ -4,7 +4,7 @@ class ThemesTest < ActionDispatch::IntegrationTest
   
   def setup
     @photographer = Photographer.create!(togname: "barry", email: "bregan@testing.com",password: "password", password_confirmation: "password")
-    @theme = Theme.create(name: "nighttime photography", description: "candid, from hip, no flash, 3200ISO", photographer: @photographer)
+    @theme = Theme.create!(name: "nighttime photography", description: "candid, from hip, no flash, 3200ISO", photographer: @photographer)
     @theme2 = @photographer.themes.build(name: "family portrait", description: "outdoors natual light candid")
     @theme2.save
   end
@@ -22,6 +22,7 @@ class ThemesTest < ActionDispatch::IntegrationTest
   end
   
   test "get themes show" do
+    sign_in_as(@photographer, "password")
     get theme_path(@theme)
     assert_template 'themes/show'
     assert_match @theme.description, response.body
@@ -32,6 +33,7 @@ class ThemesTest < ActionDispatch::IntegrationTest
   end
   
   test "create theme valid" do
+    sign_in_as(@photographer, "password")
     get new_theme_path
     assert_template 'themes/new'
     name_of_theme = "conference"
@@ -46,6 +48,7 @@ class ThemesTest < ActionDispatch::IntegrationTest
   
   
   test " disallow invalid theme input" do
+    sign_in_as(@photographer, "password")
     get new_theme_path
     assert_template 'themes/new'
     assert_no_difference 'Theme.count' do

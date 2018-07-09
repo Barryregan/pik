@@ -8,6 +8,7 @@ class ThemesEditTest < ActionDispatch::IntegrationTest
   end
   
   test "invalid theme update disallowed" do
+    sign_in_as(@photographer, "password")
     get edit_theme_path(@theme)
     assert_template 'themes/edit'
     patch theme_path(@theme), params: {theme: {name: " ", description: " some descriptive stuff"}}
@@ -19,6 +20,7 @@ class ThemesEditTest < ActionDispatch::IntegrationTest
   
   
   test "theme edit successful" do
+    sign_in_as(@photographer, "password")
     get edit_theme_path(@theme)
     assert_template 'themes/edit'
     updated_name = "updated theme name"

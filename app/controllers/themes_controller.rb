@@ -1,5 +1,7 @@
 class ThemesController < ApplicationController
-    before_action :set_theme, only: [:show, :edit, :update]
+    before_action :set_theme, only: [:show, :edit, :update, :destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only:[:edit, :update, :destroy]
      
     
     def index
@@ -16,7 +18,7 @@ class ThemesController < ApplicationController
     
     def create
         @theme = Theme.new(theme_params)
-        @theme.photographer = Photographer.first
+        @theme.photographer = current_photographer
         if @theme.save
             flash[:success] = "Theme was created successfully"
             redirect_to theme_path(@theme)
@@ -58,6 +60,13 @@ class ThemesController < ApplicationController
     
     def theme_params
         params.require(:theme).permit(:name, :description)
+    end
+    
+    def require_same_user
+        if current_photographer != @theme.photographer
+            flash[:danger] = "You cannot edit or delete another's themes"
+            redirect_to themes_path
+        end
     end
     
 end

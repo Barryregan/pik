@@ -8,6 +8,7 @@ class ThemesDeleteTest < ActionDispatch::IntegrationTest
   end
   
   test "dlete theme success" do
+    sign_in_as(@photographer, "password")
     get theme_path(@theme)
     assert_template 'themes/show'
     assert_select 'a[href=?]', theme_path(@theme), text: "Delete this theme"

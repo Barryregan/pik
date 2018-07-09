@@ -7,6 +7,7 @@ class PhotographersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "disallow invalid edit" do
+    sign_in_as(@photographer, "password")
     get edit_photographer_path(@photographer)
     assert_template 'photographers/edit'
     patch photographer_path(@photographer), params: {photographer: {togname: " ", email: " bb@example.com"}}
@@ -18,6 +19,7 @@ class PhotographersEditTest < ActionDispatch::IntegrationTest
 
   
   test "allow valid signup" do
+   sign_in_as(@photographer, "password")
    get edit_photographer_path(@photographer)
    assert_template 'photographers/edit'
    patch photographer_path(@photographer), params: {photographer: {togname: "barry22", email: "barry22@example.com"}}
