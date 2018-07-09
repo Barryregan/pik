@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_193337) do
+ActiveRecord::Schema.define(version: 2018_07_09_225554) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "description"
+    t.integer "photographer_id"
+    t.integer "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "photographers", force: :cascade do |t|
     t.string "togname"
@@ -24,6 +32,8 @@ ActiveRecord::Schema.define(version: 2018_07_09_193337) do
   create_table "theme_tools", force: :cascade do |t|
     t.integer "theme_id"
     t.integer "tool_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "themes", force: :cascade do |t|
@@ -36,6 +46,8 @@ ActiveRecord::Schema.define(version: 2018_07_09_193337) do
 
   create_table "tools", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
