@@ -4,4 +4,7 @@ class Theme < ApplicationRecord
     belongs_to :photographer
     validates :photographer_id, presence: true
     default_scope -> { order(updated_at: :desc)}
+    
+    has_many :theme_tools
+    has_many :tools, through: :theme_tools
 end
