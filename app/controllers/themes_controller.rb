@@ -63,7 +63,7 @@ class ThemesController < ApplicationController
     end
     
     def require_same_user
-        if current_photographer != @theme.photographer
+        if current_photographer != @theme.photographer and !current_photographer.admin?
             flash[:danger] = "You cannot edit or delete another's themes"
             redirect_to themes_path
         end

@@ -18,7 +18,7 @@
         </p>
     </div>
     <div class="theme-actions">
-        <% if logged_in? && current_photographer == @theme.photographer %>
+        <% if logged_in? && (current_photographer == @theme.photographer || current_photographer.admin?) %>
             <%= link_to "Edit this theme", edit_theme_path(@theme), class: "btn btn-xs btn-warning" %>
             <%= link_to "Delete this theme", theme_path(@theme), method: :delete,
                                              data: { confirm: "Are you sure you want to delete this theme?" },

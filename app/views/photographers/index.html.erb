@@ -9,7 +9,9 @@
                     <li><%= link_to gravatar_for(photographer), photographer_path(photographer) %></li>
                     <li class="photographer-title"><%= link_to photographer.togname.capitalize, photographer_path(photographer) %></li>
                     <li><small><%= pluralize(photographer.themes.count, "theme") if photographer.themes %></small></li>
+                    <% if logged_in? && current_photographer.admin? && !photographer.admin? %>
                     <li><%= link_to "Delete this photographer", photographer_path(photographer), method: :delete, data: {confirm: "Are you sure you want to delete this photographer? All associated themes will be deleted too!"} %></li>
+                    <% end %>
                 </div>
             </div>
         </ul>

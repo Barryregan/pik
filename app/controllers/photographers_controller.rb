@@ -2,6 +2,7 @@ class PhotographersController < ApplicationController
     
     before_action:set_photographer, only: [:show, :edit, :update, :destroy]
     before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_admin, only: [:destroy]
     
     def index
         @photographers = Photographer.paginate(:page => params[:page], :per_page => 5)
@@ -40,9 +41,11 @@ class PhotographersController < ApplicationController
     end
     
     def destroy
+        if !@photographer.admin?
         @photographer.destroy
         flash[:danger]="photographer and all associated themes have been deleted"
         redirect_to photographers_path
+        end
     end
     
     private
@@ -56,9 +59,16 @@ class PhotographersController < ApplicationController
     end
     
     def require_same_user
-        if current_photographer != @photographer
+        if current_photographer != @photographer and !current_photographer.admin
             flash[:danger] = "You cannot edit or delete another's account"
             redirect_to photographers_path
+        end
+    end
+    
+    def require_admin
+        if logged_in? &!current_photographer.admin?
+            flash[:danger] = "Admin rights required to perform this action"
+            redirect_to root_path
         end
     end
 end
