@@ -1,0 +1,13 @@
+<%= render 'shared/page_title', title: " #{@tool.name}" %>
+<% if @tool.themes.count != 0 %>
+    <h4 align= "center">Themes using <%= @tool.name %></h4>
+    <div align ="center">
+        <%= will_paginate @tool_themes %>
+    </div>
+    <%= render 'themes/theme', obj: @tool_themes %>
+    <div align ="center">
+        <%= will_paginate @tool_themes %>
+    </div>
+<% else %>
+ <h4 align = "center">No themes yet!</h4>
+<% end %>

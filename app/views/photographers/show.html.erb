@@ -4,11 +4,17 @@
         <%= gravatar_for @photographer, size: 150 %>
     </div>
 </div>
-<h4 align= "center"><%= @photographer.togname %>'s theme's</h4>
-<div align ="center">
-    <%= will_paginate @photographer_themes %>
-</div>
-<%= render 'themes/theme', obj: @photographer_themes %>
-<div align ="center">
-    <%= will_paginate @photographer_themes %>
-</div>
+<% if @photographer.themes.count != 0 %>
+    <h4 align= "center"><%= @photographer.togname %>'s theme's</h4>
+    <div align ="center">
+        <%= will_paginate @photographer_themes %>
+    </div>
+    <%= render 'themes/theme', obj: @photographer_themes %>
+    <div align ="center">
+        <%= will_paginate @photographer_themes %>
+    </div>
+<% else %>
+ <h4 align = "center">No themes yet!</h4>
+
+
+<% end %>
