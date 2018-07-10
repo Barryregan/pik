@@ -12,7 +12,7 @@
             <p> Tools: <%= render theme.tools %></p>
             <% end %>
         <p>
-            <span class= "quiet"><small>Created <%=time_ago_in_words(theme.created_at) %> ago by: <%= theme.photographer.togname.capitalize %></small></span>
+            <span class= "quiet"><small>Created <%=time_ago_in_words(theme.created_at) %> ago by: <%= theme.photographer.togname.capitalize %> | <%= pluralize(theme.comments.count, 'Comment')%></small></span>
         </p>
         <% if logged_in? && (current_photographer == theme.photographer || current_photographer.admin?) %>
         <div class="theme-actions">
