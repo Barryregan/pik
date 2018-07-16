@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
         photographer = Photographer.find_by(email: params[:session][:email].downcase)
         if photographer && photographer.authenticate(params[:session][:password])
          session[:photographer_id] = photographer.id
+         cookies.signed[:photographer_id] = photographer.id
          flash[:success] = "you have successfully logged in"
          redirect_to photographer
         else

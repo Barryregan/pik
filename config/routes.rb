@@ -16,6 +16,6 @@ Rails.application.routes.draw do
  
  resources :tools, except: [:destroy]
  
- 
+ mount ActionCable.server => '/cable'
  
 end

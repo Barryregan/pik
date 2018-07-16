@@ -16,6 +16,7 @@ class PhotographersController < ApplicationController
         @photographer = Photographer.new(photographer_params)
         if @photographer.save
             session[:photographer_id]=@photographer.id
+            cookies.signed[:photographer_id] = @photographer.id
             flash[:success] = "Welcome #{@photographer.togname} to Pik!"
             redirect_to photographer_path(@photographer)
         else
@@ -66,7 +67,7 @@ class PhotographersController < ApplicationController
     end
     
     def require_admin
-        if logged_in? &!current_photographer.admin?
+        if logged_in? && !current_photographer.admin?
             flash[:danger] = "Admin rights required to perform this action"
             redirect_to root_path
         end
