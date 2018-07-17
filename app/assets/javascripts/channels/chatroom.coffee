@@ -15,6 +15,13 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
     scrollToBottom()
     return
     
+  scrollToBottom = ->
+    if $('#messages').length > 0
+      $('#messages').scrollTop $('#messages')[0].scrollHeight
+    return
+  
+  $(document).ready ->
+    scrollToBottom()
+    return
 
-    
     # Called when there's incoming data on the websocket for this channel
