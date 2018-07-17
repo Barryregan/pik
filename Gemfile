@@ -15,6 +15,10 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'execjs', '>= 2.7'
+gem 'therubyracer', '~> 0.12.2'
+
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -57,7 +61,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group:production do
+group :production do
   gem 'pg'
   gem 'redis'
 end
