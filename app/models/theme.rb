@@ -8,4 +8,6 @@ class Theme < ApplicationRecord
     has_many :theme_tools
     has_many :tools, through: :theme_tools
     has_many :comments, dependent: :destroy
+    
+    mount_uploader :image, ImageUploader
 end

@@ -60,7 +60,7 @@ class ThemesController < ApplicationController
     end
     
     def theme_params
-        params.require(:theme).permit(:name, :description, tool_ids:[])
+        params.require(:theme).permit(:name, :description, :image, tool_ids:[])
     end
     
     def require_same_user
