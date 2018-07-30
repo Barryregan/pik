@@ -4,6 +4,9 @@ Rails.application.routes.draw do
  
  resources :themes do
   resources :comments, only: [:create]
+  member do
+   post 'like'
+  end
  end
  
  get '/signup', to: 'photographers#new'

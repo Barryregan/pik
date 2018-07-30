@@ -32,7 +32,17 @@
         <% end %>
         <%= link_to "Return to themes listing", themes_path, class: "btn btn-xs btn-primary" %>
     </div>
-</div
+</div>
+ <div class= "row likes">
+        <div class="row col-md-8 col-md-offset-9">
+            <%= link_to like_theme_path(@theme, like: true), method: :post do %>
+                <i class = "glyphicon glyphicon-thumbs-up"></i>
+            <% end %><%= @theme.thumbs_up_total %> ||
+            <%= link_to like_theme_path(@theme, like: false), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+                <% end %><%= @theme.thumbs_down_total %>
+        </div>
+    </div>
 <% if logged_in? %>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -57,7 +67,6 @@
         </div>
     </div>
 <% end %>
-
 <% if @theme.comments !=0 %>
     <div class= "row">
         <div class="col-md-8 col-md-offset-2">

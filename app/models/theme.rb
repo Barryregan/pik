@@ -8,6 +8,16 @@ class Theme < ApplicationRecord
     has_many :theme_tools
     has_many :tools, through: :theme_tools
     has_many :comments, dependent: :destroy
+    has_many :likes, dependent: :destroy
     
     mount_uploader :image, ImageUploader
+    
+    def thumbs_up_total
+        self.likes.where(like: true).size
+    end
+    
+    def thumbs_down_total
+        self.likes.where(like: false).size
+    end
+    
 end
