@@ -14,8 +14,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" color:#fff>
+        <% if logged_in? %>
         <li><%= link_to "Photographers", photographers_path %></li>
         <li><%= link_to "All Themes", themes_path %></li>
+        <% end %>
         <% if logged_in? %>
         <li><%= link_to "TogChat", chat_path %></li>
         <li class="dropdown">
@@ -31,12 +33,14 @@
           </ul>
         </li>
         <% end %>
+        <% if logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "All tools", tools_path %></li>
               <%Tool.all.each do |tool| %>
               <li><%= link_to tool.name.capitalize, tool_path(tool) %></li>
+        <% end %>
               <% end %>
               <% if logged_in? && current_photographer.admin? %> 
                 <li role="separator" class="divider"></li>

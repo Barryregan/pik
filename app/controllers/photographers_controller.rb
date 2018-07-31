@@ -17,7 +17,7 @@ class PhotographersController < ApplicationController
         if @photographer.save
             session[:photographer_id]=@photographer.id
             cookies.signed[:photographer_id] = @photographer.id
-            flash[:success] = "Welcome #{@photographer.togname} to Pik!"
+            flash[:success] = "Welcome to Pik, #{@photographer.togname} !"
             redirect_to photographer_path(@photographer)
         else
             render 'new'
