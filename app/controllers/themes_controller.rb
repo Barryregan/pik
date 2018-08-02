@@ -6,7 +6,11 @@ class ThemesController < ApplicationController
      
     
     def index
-        @themes = Theme.paginate(:page => params[:page], :per_page => 5)
+            @q = Theme.ransack(params[:q])
+            # how to write conditional if q exists?
+            @themes = @q.result(distinct: true).paginate(:page => params[:page],:per_page => 5)
+            #else
+           # @themes = Theme.paginate(:page => params[:page], :per_page => 5)
     end
     
     def show
@@ -87,5 +91,8 @@ class ThemesController < ApplicationController
            flash[:danger]="You must be logged in"
            redirect_to :back
     end
+
+        
+
     
 end
