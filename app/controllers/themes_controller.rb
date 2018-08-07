@@ -59,10 +59,10 @@ class ThemesController < ApplicationController
         like = Like.create(like: params[:like], photographer: current_photographer, theme: @theme)
         if like.valid?
             flash[:success]= "Thank you: Opinion registered"
-            redirect_to :back
+            redirect_back fallback_location: themes_path
         else
             flash[:danger]= "Your opinion of this theme is already registered"
-            redirect_to :back
+            redirect_back fallback_location: themes_path
         end
     end
     
@@ -87,9 +87,10 @@ class ThemesController < ApplicationController
     end
     
     def require_user_like
-       if!logged_in?
+        if !logged_in?
            flash[:danger]="You must be logged in"
            redirect_to :back
+        end
     end
 
         
